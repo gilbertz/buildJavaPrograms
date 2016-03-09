@@ -25,19 +25,31 @@ public class MaxMinSameNum {
 
         //找出重复次数最小的数字
         //// TODO: 16/3/8  
-        int min = 1;
-        int max_num = 0;
-        int min_num = 0;
-        for(Map.Entry<Integer,Integer> entry: hash.entrySet()){
-            if(entry.getValue() < min){
+        int min = 65536;
+        int max_num = -65536;
+        int min_num = 65536;
+        HashMap<Integer,Integer> hash2 = new HashMap<Integer, Integer>();
+        for(Map.Entry<Integer,Integer> entry: hash.entrySet()) {
+            if (entry.getValue() < min) {
                 min = entry.getValue();
-            }else if(entry.getValue() == min){
-                if(entry.getKey() >= max_num){
-                    max_num = entry.getKey();
-                }else if(entry.getKey() <= min_num){
-                    min_num = entry.getKey();
-                }
             }
+        }
+
+        //装在重复次数最小的数字放入hash2
+        for(Map.Entry<Integer,Integer> entry: hash.entrySet()) {
+            if(entry.getValue() == min){
+                hash2.put(entry.getKey(),entry.getValue());
+            }
+        }
+
+        //找到hash2中的最大最小值
+        for(Map.Entry<Integer,Integer> entry2: hash2.entrySet()) {
+                if (entry2.getKey() >= max_num) {
+                    max_num = entry2.getKey();
+                }
+                if (entry2.getKey() <= min_num) {
+                    min_num = entry2.getKey();
+                }
         }
 
         System.out.println("max_num:" + max_num);
@@ -46,7 +58,7 @@ public class MaxMinSameNum {
     }
 
     public static void main(String [] args){
-        int[] a = {1,2,3,4,5,1,2,6,8,-1,9,-2,0};
+        int[] a = {1,2,3,4,5,1,2,6,8,-1,9,9,-2,-2,0};
         maxMinSameNum(a);
     }
 
