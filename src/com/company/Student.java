@@ -1,8 +1,7 @@
 package com.company;
 import java.lang.*;
 import java.io.*;
-import java.util.*;
-
+import javax.swing.*;
 /**
  * Created by zhao on 16/4/9.
  */
@@ -15,7 +14,6 @@ public class Student{
     //将键盘中的输入送到输入流里,在把输入流阅读器放到缓冲里
 //    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//换用匿名类对象
 
-    private Scanner sc = new Scanner(System.in);
     public Student(String i,String n,int a){
         sid = i;
         sname = n;
@@ -23,18 +21,10 @@ public class Student{
     }
 
     public Student(){
-        try {
+        sid = JOptionPane.showInputDialog(null,"请输入学号","输入学号",JOptionPane.QUESTION_MESSAGE);
+        sname = JOptionPane.showInputDialog(null,"请输入姓名","输入姓名",JOptionPane.QUESTION_MESSAGE);
+        sage = Integer.parseInt(JOptionPane.showInputDialog(null,"请输入年龄","输入年龄",JOptionPane.QUESTION_MESSAGE));
 
-            System.out.print("请输入学号:");
-            sid = sc.next();
-            System.out.print("请输入姓名:");
-            sname = sc.next();
-            System.out.print("请输入年龄:");
-            sage = sc.nextInt();//将键盘的输入的字符串转化成整数
-        }
-        catch (Exception ex){
-
-        }
     }
 
     public void input(String i,String n,int a){
@@ -43,18 +33,21 @@ public class Student{
         sage = a;
     }
 
-    public void judge(){
+    public String judge(){
         if(sage>60){
-            System.out.println("您年纪太大了！");
+            return "您年纪太大了！";
         }else{
-            System.out.println("您年纪适当！");
+            return "您年纪适当！";
         }
     }
 
     public void output(){
-        System.out.println("sid="+sid);
-        System.out.println("sname="+sname);
-        System.out.println("sage="+sage);
+        JOptionPane.showMessageDialog(
+                null,
+                judge()+"\n" +
+                        "sid="+sid+"\n"+
+                        "sname"+sname+"\n"+
+                        "sage"+sage+"\n","学生信息",JOptionPane.INFORMATION_MESSAGE);
     }
 
     protected final void  finalize(){
