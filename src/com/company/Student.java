@@ -1,6 +1,8 @@
 package com.company;
 import java.lang.*;
 import java.io.*;
+import java.util.*;
+
 /**
  * Created by zhao on 16/4/9.
  */
@@ -11,8 +13,9 @@ public class Student{
     private int sage;
 
     //将键盘中的输入送到输入流里,在把输入流阅读器放到缓冲里
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//换用匿名类对象
+//    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//换用匿名类对象
 
+    private Scanner sc = new Scanner(System.in);
     public Student(String i,String n,int a){
         sid = i;
         sname = n;
@@ -23,12 +26,11 @@ public class Student{
         try {
 
             System.out.print("请输入学号:");
-            sid = br.readLine();
-
+            sid = sc.next();
             System.out.print("请输入姓名:");
-            sname = br.readLine();
+            sname = sc.next();
             System.out.print("请输入年龄:");
-            sage = Integer.parseInt(br.readLine());//将键盘的输入的字符串转化成整数
+            sage = sc.nextInt();//将键盘的输入的字符串转化成整数
         }
         catch (Exception ex){
 
