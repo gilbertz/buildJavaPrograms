@@ -11,9 +11,7 @@ public class Student{
     private int sage;
 
     //将键盘中的输入送到输入流里,在把输入流阅读器放到缓冲里
-    private InputStreamReader isr = new InputStreamReader(System.in);
-    private BufferedReader br = new BufferedReader(isr);
-
+    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//换用匿名类对象
 
     public Student(String i,String n,int a){
         sid = i;
@@ -21,13 +19,20 @@ public class Student{
         sage = a;
     }
 
-    public Student() throws IOException{
-        System.out.print("请输入学号:");
-        sid = br.readLine();
-        System.out.print("请输入姓名:");
-        sname = br.readLine();
-        System.out.print("请输入年龄:");
-        sage = Integer.parseInt(br.readLine());//将键盘的输入的字符串转化成整数
+    public Student(){
+        try {
+
+            System.out.print("请输入学号:");
+            sid = br.readLine();
+
+            System.out.print("请输入姓名:");
+            sname = br.readLine();
+            System.out.print("请输入年龄:");
+            sage = Integer.parseInt(br.readLine());//将键盘的输入的字符串转化成整数
+        }
+        catch (Exception ex){
+
+        }
     }
 
     public void input(String i,String n,int a){
